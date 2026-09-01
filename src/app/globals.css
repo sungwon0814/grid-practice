@@ -29,6 +29,7 @@ a { color: var(--accent); }
 
 .lead { color: var(--muted); margin-bottom: 2rem; }
 .muted { color: var(--muted); }
+.danger { color: var(--danger); }
 
 code, pre { font-family: var(--mono); font-size: .9em; }
 pre {
