@@ -1,11 +1,11 @@
 :root {
   --ink: #17201b;
   --muted: #5d6761;
-  --line: #dfe5e1;
-  --soft: #f5f7f5;
+  --line: #b81c1c;
+  --soft: #d41f1f;
   --accent: #17633c;
   --danger: #813b38;
-  --paper: #fff;
+  --paper: #e02424;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
