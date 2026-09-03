@@ -1,6 +1,6 @@
 import { sql } from 'drizzle-orm'
 import { getDb } from '@/db'
-import { participants } from '@/db/schema'
+import { participants, users } from '@/db/schema'
 import BrowserEnv from '@/components/BrowserEnv'
 
 /* 열 때마다 DB에서 다시 읽습니다. 빌드할 때 미리 만들어 두지 않습니다. */
@@ -35,7 +35,14 @@ async function load() {
     rows = null
   }
 
-  return { tables, columns, rows }
+  let userRows: (typeof users.$inferSelect)[] | null = null
+  try {
+    userRows = await db.select().from(users).limit(20)
+  } catch {
+    userRows = null
+  }
+
+  return { tables, columns, rows, userRows }
 }
 
 export default async function Tables() {
@@ -125,6 +132,37 @@ export default async function Tables() {
                     <td>{r.name}</td>
                     <td>{r.age ?? <span className="muted">—</span>}</td>
                     <td>{r.email ?? <span className="muted">—</span>}</td>
+                    <td className="muted">{r.createdAt.toISOString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
+          <h2>users 표의 내용</h2>
+          {data.userRows === null ? (
+            <p className="muted">
+              <code>users</code> 표가 아직 없습니다. <code>npm run db:generate</code>와{' '}
+              <code>npm run db:migrate</code>를 실행합니다.
+            </p>
+          ) : data.userRows.length === 0 ? (
+            <p className="muted">표는 있고 행은 0개입니다. <a href="/signup">회원가입</a>에서 하나 만들어봅니다.</p>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>name</th>
+                  <th>email</th>
+                  <th>created_at</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.userRows.map((r) => (
+                  <tr key={r.id}>
+                    <td>{r.id}</td>
+                    <td>{r.name}</td>
+                    <td>{r.email}</td>
                     <td className="muted">{r.createdAt.toISOString()}</td>
                   </tr>
                 ))}

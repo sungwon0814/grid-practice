@@ -25,6 +25,14 @@ export default function Home() {
         </p>
       </div>
 
+      <div className="card">
+        <h3><Link href="/signup">화면 3. 회원가입</Link></h3>
+        <p>
+          이름/이메일을 받아 Server Action으로 <code>users</code> 표에 저장합니다.
+          검증이 왜 server 쪽에서 이뤄져야 하는지 확인해봅니다.
+        </p>
+      </div>
+
       <h2>먼저 할 일</h2>
       <pre>{`npm install
 cp .env.example .env.local     # Windows: Copy-Item .env.example .env.local

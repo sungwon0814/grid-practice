@@ -11,3 +11,13 @@ export const participants = pgTable('participants', {
   email: text('email'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 })
+
+/* 회원가입 실습용 표. 비밀번호는 다루지 않는다 — 여기서는
+   "폼 -> server -> DB 저장"의 흐름과, email 중복을 막는
+   unique 제약만 다룬다. */
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  name: text('name').notNull(),
+  email: text('email').notNull().unique(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
