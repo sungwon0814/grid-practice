@@ -13,7 +13,9 @@
 
 body {
   margin: 0;
-  background: var(--paper);
+  background:
+    radial-gradient(circle at 6px 6px, rgba(255,255,255,.55) 2.2px, transparent 2.3px) 0 0 / 16px 16px,
+    linear-gradient(180deg, #ffd93d 0%, #ff9f43 35%, #ff6f91 70%, #6c5ce7 100%);
   color: var(--ink);
   font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard",
     "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
